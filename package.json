@@ -1,11 +1,11 @@
 {
-  "name": "facebook-sdk-promise",
+  "name": "facebook-sdk-easy",
   "version": "1.0.0",
   "author": "Natan Rubinstein  <natanr123@gmail.com>",
   "license": "MIT",
   "repository" :
   {
     "type" : "git",
-    "url" : "https://github.com/natanr123/facebook-sdk-promise"
+    "url" : "https://github.com/natanr123/facebook-sdk-easy.git"
   }
 }
