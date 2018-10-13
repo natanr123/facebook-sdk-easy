@@ -1,6 +1,6 @@
 'use strict';
 
-export class Facebook {
+export default class Facebook {
     getScript() {
         return new Promise((resolve) => {
             if (window.FB) {
