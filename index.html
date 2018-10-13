@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="module">
+        import { Facebook } from '/index.js';
+        const FB = new Facebook();
+
+
+        window.getScript = ()=> {
+            console.log('Getting Script ...');
+            FB.getScript().then((response) => {
+                console.log('SDK script loaded')
+            }).catch((error) => {
+                console.log('Error has happened: ', error);
+            });
+        };
+
+        window.init = () => {
+            const params = {
+                appId            : document.querySelector('#appId').value,
+                autoLogAppEvents : true,
+                xfbml            : true,
+                version          : 'v3.1'
+            };
+            console.log('Init SDK ...');
+            FB.init(params).then((response) => {
+                console.log('SDK Init Success');
+            }).catch((error) => {
+                console.log('Error has happened: ', error);
+            });
+        };
+
+        window.login = () => {
+            console.log('Logging in ...');
+            FB.login().then((response) => {
+                console.log('Logged in Success: ', response);
+            }).catch((error) => {
+                console.log('Error has happened: ', error);
+            });
+        };
+
+    </script>
+    <script>
+
+    </script>
+</head>
+<body>
+    <form>
+        <h3>Look at the Developer Tools Console to see results</h3>
+        <button type="button" onclick="window.getScript();">Get Script</button>
+        <br />
+        <span>App ID:</span>
+        <input type="text" id="appId" name="appId" />
+        <button type="button" onclick="window.init();">Init</button>
+        <br />
+        <button type="button" onclick="window.login();">Login</button>
+
+
+    </form>
+</body>
+</html>

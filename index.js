@@ -1,6 +1,6 @@
 'use strict';
 
-export default class Facebook {
+export class Facebook {
     getScript() {
         return new Promise((resolve) => {
             if (window.FB) {
@@ -37,9 +37,7 @@ export default class Facebook {
 
     init(params = {}) {
         return new Promise(async (resolve) => {
-            const FB = await this.getScript();
             FB.init(params);
-
             resolve(FB);
         });
     }
