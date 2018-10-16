@@ -1,3 +1,91 @@
 Facebook SDK Promise
 
 index.html server.js cert.pem and key.pem are just for example
+
+Example With APP
+```javascript
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="module">
+        import Facebook from '/index.js';
+        const FB = new Facebook();
+
+
+        window.getScript = ()=> {
+            console.log('Getting Script ...');
+            FB.getScript().then((response) => {
+                console.log('SDK script loaded')
+            }).catch((error) => {
+                console.log('Error has happened: ', error);
+            });
+        };
+
+        window.init = () => {
+            const params = {
+                appId            : document.querySelector('#appId').value,
+                autoLogAppEvents : true,
+                xfbml            : true,
+                version          : 'v3.1'
+            };
+            console.log('Init SDK ...');
+            FB.init(params).then((response) => {
+                console.log('SDK Init Success');
+            }).catch((error) => {
+                console.log('Error has happened: ', error);
+            });
+        };
+
+        window.login = () => {
+            console.log('Logging in ...');
+            FB.login().then((response) => {
+                console.log('Logged in Success: ', response);
+            }).catch((error) => {
+                console.log('Error has happened: ', error);
+            });
+        };
+
+        window.getScriptForPlugin = ()=> {
+            console.log('Getting Script For Plugins...');
+            FB.getScriptForPlugin().then((response) => {
+                console.log('Plugins scripts loaded')
+            }).catch((error) => {
+                console.log('Error has happened: ', error);
+            });
+        };
+
+    </script>
+    <script>
+
+    </script>
+</head>
+<body>
+    <div>
+        <h2>For use with app</h2>
+        <form>
+
+            <button type="button" onclick="window.getScript();">Get Script</button>
+            <br />
+            <span>App ID:</span>
+            <input type="text" id="appId" name="appId" />
+            <button type="button" onclick="window.init();">Init</button>
+            <br />
+            <button type="button" onclick="window.login();">Login</button>
+
+
+        </form>
+    </div>
+    <div>
+        <h2>For with share plugin</h2>
+        <form>
+            <button type="button" onclick="window.getScriptForPlugin();">Get Script For Plugins</button>
+
+        </form>
+        <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>    <h3>Look at the Developer Tools Console to see results</h3>
+</body>
+</html>
+
+```
+To see the example live run: node server

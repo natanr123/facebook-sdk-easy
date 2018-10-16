@@ -35,6 +35,37 @@ export default class Facebook {
         });
     }
 
+    getScriptForPlugin() {
+        return new Promise((resolve) => {
+            if (window.FB) {
+                resolve(window.FB);
+            }
+
+            const id = 'facebook-jssdk';
+            const fjs = document.querySelectorAll('script')[0];
+            if (document.getElementById(id)) {
+                return;
+            }
+
+            const js = document.createElement('script');
+            js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1';
+
+            js.addEventListener('load', () => {
+                Object.assign(this, {
+                    AppEvents: window.FB.AppEvents,
+                    Canvas: window.FB.Canvas,
+                    Event: window.FB.Event,
+                    Frictionless: window.FB.Frictionless,
+                    XFBML: window.FB.XFBML,
+                });
+                resolve(window.FB);
+            });
+
+            fjs.parentNode.insertBefore(js, fjs);
+        });
+    }
+
     init(params = {}) {
         return new Promise(async (resolve) => {
             FB.init(params);
