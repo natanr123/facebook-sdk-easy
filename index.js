@@ -15,7 +15,7 @@ export default class Facebook {
 
             const js = document.createElement('script');
             js.id = id;
-            js.src = '//connect.facebook.net/zh_TW/sdk.js';
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
 
             js.addEventListener('load', () => {
                 Object.assign(this, {
