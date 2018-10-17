@@ -1,5 +1,4 @@
 'use strict';
-
 export default class Facebook {
     getScript() {
         return new Promise((resolve) => {
@@ -75,8 +74,6 @@ export default class Facebook {
 
     api(...params) {
         return new Promise(async (resolve) => {
-            const FB = await this.getScript();
-
             const callback = (response) => {
                 resolve(response);
             };
@@ -93,8 +90,6 @@ export default class Facebook {
 
     ui(params) {
         return new Promise(async (resolve) => {
-            const FB = await this.getScript();
-
             FB.ui(params, (response) => {
                 resolve(response);
             });
@@ -103,8 +98,6 @@ export default class Facebook {
 
     getLoginStatus() {
         return new Promise(async (resolve) => {
-            const FB = await this.getScript();
-
             FB.getLoginStatus((response) => {
                 resolve(response);
             });
@@ -113,8 +106,6 @@ export default class Facebook {
 
     login(params = { scope: '' }) {
         return new Promise(async (resolve) => {
-            const FB = await this.getScript();
-
             FB.login((response) => {
                 resolve(response);
             }, params);
@@ -123,8 +114,6 @@ export default class Facebook {
 
     logout() {
         return new Promise(async (resolve) => {
-            const FB = await this.getScript();
-
             FB.logout((response) => {
                 resolve(response);
             });
@@ -133,8 +122,6 @@ export default class Facebook {
 
     getAuthResponse() {
         return new Promise(async (resolve) => {
-            const FB = await this.getScript();
-
             resolve(FB.getAuthResponse());
         });
     }
